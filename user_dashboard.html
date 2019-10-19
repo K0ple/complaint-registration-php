@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>UserDashBoard</title>
+        <style>
+            td,th
+            {
+                padding: 10px;   
+                width: 280px;
+                text-align: center;
+                font-size: 16px;
+            }
+            tr
+            {
+                background-color: aquamarine;
+                border: 0;
+            }
+            th
+            {
+                background-color: lawngreen;
+            }
+            .opt
+            {
+                width: 80px;
+            }
+            button
+            {
+                background-color: darkgoldenrod;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Your Complaints</h3>
+        <table>
+            <tr>
+                <th>Authority Name</th>
+                <th>Complaint</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th colspan="2"></th>
+            </tr>
+            <!-- <?php 
+                include('connection.php');
+                $sql = "SELECT authorityname, msg, image, status FROM complaints where username = 'NIKHIL'";
+                $result = $conn->query($sql);
+                if($result->num_rows>0)
+                {
+                    while($row = $result->fetch_assoc())
+                    {
+                        echo "<tr><td>".$row['authorityname']."</td><td>".$row['msg']."</td><td>".$row['image']."</td><td>".$row['status']."</td><td class='opt'>"."<a href='edit'><button>Edit</button></a></td><td class='opt'><a href='del'><button>Delete</button></a></td></tr>";
+                    }
+                }
+            ?> -->
+        </table>
+        <br><br>
+        <h3>Your Reviews</h3>
+        <table>
+        <tr>
+            <th>Authority Name</th>
+            <th>Review</th>
+        </tr>
+        </table>
+    </body>
+</html>

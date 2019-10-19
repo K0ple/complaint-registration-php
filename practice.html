@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ticket Reservation System</title>
+		<style>
+			body{
+				background-image: url("sendmessagebackground.jpg");
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+			h1{
+				padding-top: 30px;
+				text-align: center;
+				color: darkolivegreen;
+			}
+			.main{
+				margin: 0;
+				background-color: rgb(20,20,20);
+				color: wheat;
+				width: 780px;
+				height: 280px;
+				position: absolute;
+				top: 20%;
+				left: 22%;
+				padding-top: 50px;
+				border-radius: 20px;
+			}
+			.main1
+			{
+				display: flex;
+				flex-direction: row;
+			}
+			.left, .right
+			{
+				width: 380px;
+				height: 120px;
+				padding: 20px;
+				font-size: 16px;
+			}
+			.left input
+			{
+				position: absolute;
+				left: 90px;
+				border: 0;
+				background: transparent;
+				border-bottom: 1px solid aqua;
+				padding-top: 10px;
+				padding-left: 30px;
+				padding-right: 30px;
+				margin-left: 20px;
+				color: bisque;
+				text-align: center;
+			}
+			.right input
+			{
+				background-color: transparent;
+				color: bisque;
+				margin-left: 20px;
+				padding: 8px;
+				padding-left: 18px;
+				border: 1px solid aqua;
+				border-radius: 20px;
+				text-align: center;
+				margin-bottom: 10px;
+			}
+			input[type="submit"]
+			{
+				position: absolute;
+				left: 40%;
+				background: transparent;
+				color: aqua;
+				padding: 10px;
+				padding-left: 50px;
+				padding-right: 50px;
+				border-radius: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Welcome to Ticket Reservation System</h1>
+		<form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+		<div class="main">
+			<div class="main1">
+				<div class="left">
+					<label for="from">From</label>
+					<input type="text" id="from" name="from" list="places"><br><br><br>
+					<label for="to">To</label>
+					<input type="text" id="to" name="to" list="places"><br>
+					<datalist id="places">
+						<option value="Vellore"></option>
+						<option value="Chennai"></option>
+						<option value="Banglore"></option>
+						<option value="Hyderabad"></option>
+						<option value="Anantapur"></option>
+						<option value="Tirupathi"></option>
+						<option value="Chittoor"></option>
+						<option value="Amaravathi"></option>
+						<option value="Mumbai"></option>
+						<option value="Delhi"></option>
+					</datalist>
+				</div>
+				<div class="right">
+					<label for="date">Select boarding Date</label>
+					<input type="date" id="date" min="<?php echo date(); ?>"><br>
+					<label for="time">Select boarding Time</label>
+					<input type="time" id="time" min="<?php echo date(); ?>"><br>
+				</div>
+			</div>
+				<input type="submit">
+		</div>
+		</form>
+		<?php 
+			
+		?>
+	</body>
+</html>
