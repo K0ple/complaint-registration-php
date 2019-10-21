@@ -17,13 +17,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         Complaint ID : <p><?php echo $complaintid; ?></p><br>
         Authority Name : <p><?php echo $authorityname; ?></p><br>
         Complaint: <textarea id="complaint" name="complaint"></textarea><br>
-        Image : <input type="text" id="image" name="image"><br>
-        <p><?php echo $status;?></p><br>
+        Current Image: <img src ="" id="image" height=100 width=200><br>
+        Status: <p><?php echo $status;?></p><br>
         <input type="submit" value="Save">
     </form>
     <script>
         document.getElementById('complaint').value = "<?php echo $complaint; ?>";
-        document.getElementById('image').value = "<?php echo $image; ?>";
+        document.getElementById('image').src = "<?php echo $image; ?>";
     </script>
 </body>
 </html>

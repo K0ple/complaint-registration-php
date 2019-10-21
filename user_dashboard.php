@@ -3,6 +3,7 @@
     session_start();
     $user = $_SESSION['user'];
  ?>
+ 
 <html>
     <head>
         <title>UserDashBoard</title>
@@ -92,6 +93,11 @@
                 width:0px;
                 height:0px;
             }
+            button
+            {
+                color: black;
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
@@ -125,7 +131,7 @@
                         $edit4[$i]= $row["msg"];
                         $edit6[$i] = $row["image"];
                         $edit8[$i] = $row["status"]; 
-                        echo "<tr><td class='cid'>".$row["complaintid"]."</td><td>".$row['authorityname']."</td><td>".$row['msg']."</td><td>".$row['image']."</td><td class='cid'>".$row['status']."</td><td class='opt'>"."<button id='edit' onclick='edited($edit[$i],\"$edit2[$i]\",\"$edit4[$i]\",\"$edit6[$i]\",$edit8[$i])'><span class='edit'>EDIT</span><img src='edit-regular.svg'></button></td><td class='opt'><button id='del' onclick='deleted($edit[$i])''><span class='del'>DELETE</span><img src='trash-alt-regular.svg'></button></td></tr>";
+                        echo "<tr><td class='cid'>".$row["complaintid"]."</td><td>".$row['authorityname']."</td><td>".$row['msg']."</td><td>"."<button onclick='img(\"$edit6[$i]\")'>View Image</button>"."</td><td class='cid' id='status'>".$row['status']."</td><td class='opt'>"."<button id='edit' onclick='edited($edit[$i],\"$edit2[$i]\",\"$edit4[$i]\",\"$edit6[$i]\",$edit8[$i])'><span class='edit'>EDIT</span><img src='edit-regular.svg'></button></td><td class='opt'><button id='del' onclick='deleted($edit[$i])''><span class='del'>DELETE</span><img src='trash-alt-regular.svg'></button></td></tr>";
                         $i++;
                     }
                 }
@@ -191,6 +197,12 @@
                 document.getElementById('delete1').innerHTML= '<form "style=display:none;" method="post" action="delete.php"><input type="text" id= "complaintid" name="reviewid"><input type="submit" id="submit" name="submit2"></form>';
                 document.getElementById('complaintid').value = i;
                 document.getElementById('submit').click();               
+            }
+            function img(i)
+            {
+                document.getElementById('delete1').innerHTML= '<form "style=display:none;" method="post" action="displayimg.php"><input type="text" id= "imgsrc" name="imgsrc"><input type="submit" id="submit"></form>';
+                document.getElementById('imgsrc').value = i;
+                document.getElementById('submit').click(); 
             }
         </script>
     </body>

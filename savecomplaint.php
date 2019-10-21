@@ -1,4 +1,6 @@
 <?php 
+        session_start();
+        $user = $_SESSION['user'];
         if($_SERVER["REQUEST_METHOD"]=="POST")
         {
             $msg = $_POST["msg"];
@@ -51,9 +53,11 @@
                 $conn = new mysqli($server, $username, $password, $dbname);
                 if($conn->connect_error)
                     die($conn->connect_error);
-                $sql = "INSERT INTO complaints (username, authorityname, msg, image, status) values('NIKHIL', 'CHIRU', '$msg', '$target_file',0)";
-                if($conn->query($sql) === TRUE)
+                $sql = "INSERT INTO complaints (username, authorityname, msg, image, status) values('$user', 'CHIRU', '$msg', '$target_file',0)";
+                if($conn->query($sql) === TRUE){
                     echo "Complaint Registered Successfully";
+                    header("location:sendcomplaint.php");
+                }
                 else
                     echo "Complaint not registered";
                 $conn->close();

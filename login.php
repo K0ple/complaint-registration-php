@@ -32,9 +32,13 @@
                 while($row = $result->fetch_assoc()) {
                     if($row["password"]==$mypassword && $row["username"]==$myusername)
                     {
+                        $_SESSION['user']=$myusername;
+                        $_SESSION['password']=$mypassword;
                         $usertype = $row['usertype'];
                         if($usertype=='citizen')
-                            header("location:user_dashboard.php");
+                            // header("location:user_dashboard.php");
+                            // header('location: sendcomplaint.php');
+                            header("location:userchiru.php");
                         else if($usertype=='admin')
                             header("location:admindashboard.php");
                         else if($usertype=='authority')
@@ -44,8 +48,6 @@
                         echo "INVALID CREDITIANTIALS!!!<br>  TRY AGAIN!!!";
                         echo "username: ".$row['username'];
                 }
-                $_SESSION['user']=$myusername;
-                $_SESSION['password']=$mypassword;
             }
             $conn->close();
         }

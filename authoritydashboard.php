@@ -4,6 +4,7 @@
     session_start();
     $user = $_SESSION['user'];
  ?>
+ 
     <head>
         <title>AuthorityDashBoard</title>
         <style>
@@ -92,6 +93,11 @@
                 width:0px;
                 height:0px;
             }
+            button
+            {
+                color: black;
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
@@ -117,7 +123,8 @@
                     while($row = $result->fetch_assoc())
                     {
                         $edit[$i] = $row["complaintid"]; 
-                        echo "<tr><td class='cid'>".$row["complaintid"]."</td><td>".$row['username']."</td><td>".$row['msg']."</td><td>".$row['image']."</td><td class='cid'>".$row['status']."</td><td class='opt'>"."<button id='edit' onclick='solved($edit[$i])'><span class='edit'>SOLVED</span><img src='edit-regular.svg'></button></td></tr>";
+                        $img = $row["image"];
+                        echo "<tr><td class='cid'>".$row["complaintid"]."</td><td>".$row['username']."</td><td>".$row['msg']."</td><td>"."<button onclick='img(\"$img\")'>View Image</button>"."</td><td class='cid'>".$row['status']."</td><td class='opt'>"."<button id='edit' onclick='solved($edit[$i])'><span class='edit'>SOLVED</span><img src='edit-regular.svg'></button></td></tr>";
                         $i++;
                     }
                 }
@@ -141,7 +148,8 @@
                 {
                     while($row = $result->fetch_assoc())
                     {
-                        echo "<tr><td class='cid2'>".$row["complaintid"]."</td><td>".$row['username']."</td><td>".$row['msg']."</td><td>".$row['image']."</td><td class='cid2'>".$row['status']."</td></tr>";
+                        $img = $row["image"];
+                        echo "<tr><td class='cid2'>".$row["complaintid"]."</td><td>".$row['username']."</td><td>".$row['msg']."</td><td>"."<button onclick='img(\"$img\")'>View Image</button>"."</td><td class='cid2'>".$row['status']."</td></tr>";
                     }
                 }
             ?>
@@ -173,6 +181,12 @@
                 document.getElementById('form').innerHTML = '<form "style = display:none;" action="statuschange.php" method="post"><input type="text" id="cid" name="cid"><input type="submit" id="submit"></form>';
                 document.getElementById('cid').value = i;
                 document.getElementById('submit').click();
+            }
+            function img(i)
+            {
+                document.getElementById('form').innerHTML= '<form "style=display:none;" method="post" action="displayimg.php"><input type="text" id= "imgsrc" name="imgsrc"><input type="submit" id="submit"></form>';
+                document.getElementById('imgsrc').value = i;
+                document.getElementById('submit').click(); 
             }
         </script>
     </body>

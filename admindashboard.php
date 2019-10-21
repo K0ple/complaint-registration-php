@@ -4,6 +4,7 @@
     session_start();
     $user = $_SESSION['user'];
  ?>
+ 
     <head>
         <title>AdminDashBoard</title>
         <style>
@@ -92,6 +93,11 @@
                 width:0px;
                 height:0px;
             }
+            button
+            {
+                color: black;
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
@@ -114,7 +120,8 @@
                 {
                     while($row = $result->fetch_assoc())
                     {
-                        echo "<tr><td class='cid2'>".$row["complaintid"]."</td><td>".$row['username']."</td><td>".$row['authorityname']."</td><td>".$row['msg']."</td><td>".$row['image']."</td><td class='cid2'>".$row['status']."</td></tr>";
+                        $img = $row["image"];
+                        echo "<tr><td class='cid2'>".$row["complaintid"]."</td><td>".$row['username']."</td><td>".$row['authorityname']."</td><td>".$row['msg']."</td><td>"."<button onclick='img(\"$img\")'>View Image</button>"."</td><td class='cid2'>".$row['status']."</td></tr>";
                     }
                 }
             ?>
@@ -138,7 +145,8 @@
                 {
                     while($row = $result->fetch_assoc())
                     {
-                        echo "<tr><td class='cid2'>".$row["complaintid"]."</td><td>".$row['username']."</td><td>".$row['authorityname']."</td><td>".$row['msg']."</td><td>".$row['image']."</td><td class='cid2'>".$row['status']."</td></tr>";
+                        $img = $row["image"];
+                        echo "<tr><td class='cid2'>".$row["complaintid"]."</td><td>".$row['username']."</td><td>".$row['authorityname']."</td><td>".$row['msg']."</td><td>"."<button onclick='img(\"$img\")'>View Image</button>"."</td><td class='cid2'>".$row['status']."</td></tr>";
                     }
                 }
             ?>
@@ -164,5 +172,14 @@
                 }
             ?>
         </table>
+        <div id="delete1"></div>
+        <script>
+            function img(i)
+            {
+                document.getElementById('delete1').innerHTML= '<form "style=display:none;" method="post" action="displayimg.php"><input type="text" id= "imgsrc" name="imgsrc"><input type="submit" id="submit"></form>';
+                document.getElementById('imgsrc').value = i;
+                document.getElementById('submit').click(); 
+            }
+        </script>
     </body>
 </html>

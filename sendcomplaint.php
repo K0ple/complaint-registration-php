@@ -1,9 +1,11 @@
 <html>
 <?php 
+    session_start();
+    echo $_SESSION['user'].'<br>';
     if($_SERVER['REQUEST_METHOD']=='POST')
     {
         $_SESSION['type'] = $_POST['type'];
-        echo $_SESSION['type'];
+        echo $_SESSION['type'].'<br>';
     }
 ?>
 <head>
@@ -56,6 +58,7 @@
             }
             input[type="submit"]
             {
+                outline: none;
                 position: relative;
                 left:40%;
                 font-size: 14px;
@@ -83,7 +86,7 @@
         <div class="right">
             <h2>Message</h2><br>
             <textarea></textarea><br>
-            <button type="submit">Submit Message</button>
+            <input type="submit" value="Send Message">
         </div>
     </div>
     </body>

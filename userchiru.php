@@ -129,6 +129,7 @@
                     <li><button onclick="fun('CORRUPTION')">CORRUPTION</button></li>
                     <li id="a"><button onclick="fun('THEFT')">THEFT</button></li>
                 </ul>
+                <a href="user_dashboard.php">View Complaints and Reviews</a>
             </div>
             <div id="form"></div>
             <script>
