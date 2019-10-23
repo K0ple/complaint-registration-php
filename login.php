@@ -36,13 +36,11 @@
                         $_SESSION['password']=$mypassword;
                         $usertype = $row['usertype'];
                         if($usertype=='citizen')
-                            // header("location:user_dashboard.php");
-                            // header('location: sendcomplaint.php');
                             header("location:userchiru.php");
                         else if($usertype=='admin')
-                            header("location:admindashboard.php");
+                            header("location:adminchiru.php");
                         else if($usertype=='authority')
-                            header("location:authoritydashboard.php");
+                            header("location:authoritychiru.php");
                     }
                     else
                         echo "INVALID CREDITIANTIALS!!!<br>  TRY AGAIN!!!";

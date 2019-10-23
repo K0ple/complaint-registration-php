@@ -2,8 +2,8 @@
 <html>
 <?php 
     session_start(); 
-    // $user = $_SESSION['user'];
-    $user = 'nicky';
+    include('bar.php');
+    $user = $_SESSION['user'];
     include('config.php');
     $sql = "SELECT * from user_details where username='$user'";
     $result = $conn->query($sql);
@@ -38,7 +38,7 @@
                     <input type="text" value="<?php echo $firstname; ?>" name="firstname"><br>
                     <input type="text" value="<?php echo $lastname; ?>" name="lastname"><br>
                     <input type="text" value="<?php echo $username; ?>" name="username"><br>
-                    <input type="text" value="<?php echo $usertype; ?>" name="usertype"><br>
+                    <input type="text" value="<?php echo $usertype; ?>" name="usertype" readonly><br>
                 </div>
                 <div class="right">
                     <input type="contact" value="<?php echo $contact; ?>" name="contact"><br>

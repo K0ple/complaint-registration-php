@@ -4,15 +4,15 @@
   echo '<li><a href="about.php">About</a></li>';
   if(isset($_SESSION['user'])==TRUE)
   {
-    echo '<li><a href="edituser.php">Profile</a></li>';
-    echo '<li><a href="viewdetailsuser.php">Edit Profile</a></li>';
+    echo '<li><a href="viewdetailsuser.php">Profile</a></li>';
+    echo '<li><a href="edituser.php">Edit Profile</a></li>';
     echo '<li><a href="logout.php">Logout</a></li></ul>';
   }
   else
   {
     echo '<li><a href="login.php">Login</a></li>';
     echo '<li><a href="signup.php">Sign Up</a></li>';
-    echo '<li><a href="login.php">Complaint</a></li></ul>';
+    echo '<li><a href="complaint.php">Complaint</a></li></ul>';
   }
 ?>
 <style>

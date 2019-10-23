@@ -1,32 +1,68 @@
 <html>
 <?php 
-    include("admin_sidebar.php");
+    include("auth_sidebar.php");
+    $user = $_SESSION['user'];
     include('config.php');
-    $sql1 = "SELECT COUNT(username) from user_details where usertype='citizen'";
-    $result1 = $conn->query($sql1);
-    if($result1->num_rows>0)
-        $row1 = $result1->fetch_assoc();
-    $usercount =  $row1['COUNT(username)'];
-    $sql2 = "SELECT COUNT(username) from user_details where usertype='authority'";
+    $sql2 = "SELECT COUNT(status) from complaints where authorityname='$user' and status=1";
     $result2 = $conn->query($sql2);
     if($result2->num_rows>0)
         $row2 = $result2->fetch_assoc();
-    $authoritycount =  $row2['COUNT(username)'];
-    $sql3 = "SELECT COUNT(status) from complaints where status=1";
+    $solvedcount =  $row2['COUNT(status)'];
+    $sql3 = "SELECT COUNT(status) from complaints where authorityname='$user' and status=0";
     $result3 = $conn->query($sql3);
     if($result3->num_rows>0)
         $row3 = $result3->fetch_assoc();
-    $solvedcomplaintscount =  $row3['COUNT(status)'];
-    $sql4 = "SELECT COUNT(status) from complaints where status=0";
+    $unsolvedcount =  $row3['COUNT(status)'];
+    $sql4 = "SELECT COUNT(reviewid) from reviews where authorityname='$user'";
     $result4 = $conn->query($sql4);
     if($result4->num_rows>0)
         $row4 = $result4->fetch_assoc();
-    $unsolvedcomplaintscount =  $row4['COUNT(status)'];
+    $reviewcount =  $row4['COUNT(reviewid)'];
+    
 ?>
     <head>
         <title>ADMIN DASH</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
+            body{
+                background-image: url("https://wallpapertag.com/wallpaper/full/e/1/0/118962-best-background-gradient-1920x1200-for-tablet.jpg");
+                /* background-color: lightpink; */
+            }
+            .sidebar{
+                height:100%;
+                background-color: black;
+                width: 250px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                overflow: hidden;
+                padding-top: 100px;
+            }
+            .sidebar a{
+                text-decoration: none;
+                font-size:25px;
+                color:white;
+                padding:10px;
+                display:block;
+            }
+            .sidebar a:hover{
+                color: gold;
+            }
+            .main{
+                margin-left:500px;
+            }
+            img{
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                position: absolute;
+                top: 20px;
+                left: calc(50% - 50px);
+            }
+            h1{
+                font-size: 50px;
+                
+            }
             .main1
             {
                 display: flex;
@@ -72,9 +108,6 @@
             {
                 background-color: cyan;
             }
-            .main{
-                margin-left:500px;
-            }
             a
             {
                 text-decoration: none;
@@ -82,32 +115,23 @@
         </style>
     </head>
     <body>
-        <div class="main">
-            <h1>WELCOME&nbsp; &nbsp;ADMIN !!!</h1>
-        </div>
         <div class="main1">
-            <a href='admin_view_userdetails.php'>
-                <div class="first">
-                    <p>Number of Users</p>
-                    <p><?php echo $usercount; ?></p>
-                </div>
-            </a>
-            <a href='admin_view_auth_details.php'>
+            <a href='authdashboard_complaints.php'>
                 <div class="second">
-                    <p>Number of Authorities</p>
-                    <p><?php echo $authoritycount; ?></p>
-                </div>
+                    <p>Solved Cases</p>
+                    <p><?php echo $solvedcount; ?></p>
+                 </div>
             </a>
-            <a href='admindashboard_complaints.php'>
+            <a href='authdashboard_complaintspending.php'>
                 <div class="third">
-                    <p>Solved Complaints</p>
-                    <p><?php echo $solvedcomplaintscount; ?></p>
+                    <p>Pending Cases</p>
+                    <p><?php echo $unsolvedcount; ?></p>
                 </div>
             </a>
-            <a href='admindashboard_complaints.php'>
+            <a href='authdashboard_reviews.php'>
                 <div class="fourth">
-                    <p>Pending Complaints</p>
-                    <p><?php echo $unsolvedcomplaintscount; ?></p>
+                    <p>Review Count</p>
+                    <p><?php echo $reviewcount; ?></p>
                 </div>
             </a>
         </div>

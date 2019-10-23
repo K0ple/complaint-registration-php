@@ -2,8 +2,8 @@
 <html>
 <?php 
     session_start(); 
-    // $user = $_SESSION['user'];
-    $user = 'nicky';
+    include('bar.php');
+    $user = $_SESSION['user'];
     include('config.php');
     $sql = "SELECT * from user_details where username='$user'";
     $result = $conn->query($sql);
