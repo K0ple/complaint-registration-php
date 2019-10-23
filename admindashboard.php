@@ -6,6 +6,7 @@
  ?>
  
     <head>
+    <?php include "bar.php"; ?>
         <title>AdminDashBoard</title>
         <style>
             body
@@ -176,7 +177,7 @@
         <script>
             function img(i)
             {
-                document.getElementById('delete1').innerHTML= '<form "style=display:none;" method="post" action="displayimg.php"><input type="text" id= "imgsrc" name="imgsrc"><input type="submit" id="submit"></form>';
+                document.getElementById('delete1').innerHTML= '<form "style=display:none;" method="post" target="_blank" action="displayimg.php"><input type="text" id= "imgsrc" name="imgsrc"><input type="submit" id="submit"></form>';
                 document.getElementById('imgsrc').value = i;
                 document.getElementById('submit').click(); 
             }

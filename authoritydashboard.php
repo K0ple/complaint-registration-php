@@ -4,7 +4,7 @@
     session_start();
     $user = $_SESSION['user'];
  ?>
- 
+
     <head>
         <title>AuthorityDashBoard</title>
         <style>
@@ -184,7 +184,7 @@
             }
             function img(i)
             {
-                document.getElementById('form').innerHTML= '<form "style=display:none;" method="post" action="displayimg.php"><input type="text" id= "imgsrc" name="imgsrc"><input type="submit" id="submit"></form>';
+                document.getElementById('form').innerHTML= '<form "style=display:none;" method="post" target="_blank" action="displayimg.php"><input type="text" id= "imgsrc" name="imgsrc"><input type="submit" id="submit"></form>';
                 document.getElementById('imgsrc').value = i;
                 document.getElementById('submit').click(); 
             }

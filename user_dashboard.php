@@ -5,6 +5,7 @@
  ?>
  
 <html>
+<?php include "bar.php"; ?>
     <head>
         <title>UserDashBoard</title>
         <style>
@@ -200,7 +201,7 @@
             }
             function img(i)
             {
-                document.getElementById('delete1').innerHTML= '<form "style=display:none;" method="post" action="displayimg.php"><input type="text" id= "imgsrc" name="imgsrc"><input type="submit" id="submit"></form>';
+                document.getElementById('delete1').innerHTML= '<form "style=display:none;" target="_blank" method="post" action="displayimg.php"><input type="text" id= "imgsrc" name="imgsrc"><input type="submit" id="submit"></form>';
                 document.getElementById('imgsrc').value = i;
                 document.getElementById('submit').click(); 
             }
