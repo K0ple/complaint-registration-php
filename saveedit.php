@@ -8,6 +8,6 @@ session_start();
         include('config.php');
         $sql = "UPDATE complaints SET msg='$complaint', image='$image' WHERE complaintid='$cid'";
         $conn->query($sql);
-        header("location: user_dashboard.php");
+        header("location: user_complaints.php");
     }
     ?>

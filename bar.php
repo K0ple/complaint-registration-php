@@ -1,7 +1,25 @@
 <html>
 <?php 
+if(isset($_SESSION['user'])==TRUE)
+{
+    if($_SESSION['usertype']=='citizen')
+    {
+      echo '<ul class="ul1"><li class="li1"><a href="user_db.php">Dashboard</a></li>';
+    }
+    else if($_SESSION['usertype']=='authority')
+    {
+      echo '<ul class="ul1"><li class="li1"><a href="authoritychiru.php">Dashboard</a></li>';
+    }
+    else if($_SESSION['usertype']=='admin')
+    {
+      echo '<ul class="ul1"><li class="li1"><a href="adminchiru.php">Dashboard</a></li>';
+    }
+}
+else
+{
   echo '<ul class="ul1"><li class="li1"><a href="main.php">Home</a></li>';
-  echo '<li class="li1"><a href="about.php">About</a></li>';
+}
+  echo '<li class="li1"><a href="about.php">About Us</a></li>';
   if(isset($_SESSION['user'])==TRUE)
   {
     echo '<li class="li1"><a href="viewdetailsuser.php">Profile</a></li>';
@@ -26,7 +44,9 @@
   border-radius: 40px;
 }
 .li1 {
+  position: relative;
   float: left;
+  left: 10px;
 }
 .li1 a {
   display: block;
@@ -35,7 +55,7 @@
   padding-top: 20px;
   padding-left: 100px;
   padding-bottom: 20px;
-  padding-right: 110px;
+  padding-right: 100px;
   text-decoration: none;
   font-size: 18px;
   transition: 0.2s;
@@ -46,11 +66,4 @@
   transform: scale(1.3);
 }
 </style>
-<!-- <ul>
-  <li><a href="main.php">Home</a></li>
-  <li><a href="login.php">Login</a></li>
-  <li><a href="signup.php">Sign Up</a></li>
-  <li><a href="#a.php">Log out</a></li>
-  <li><a href="about.php">About</a></li>
-</ul> -->
 </html>

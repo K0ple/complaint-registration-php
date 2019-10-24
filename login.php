@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start();
+    include('bar.php');
+?>
 <!DOCTYPE html>
 <head>
     <title>Login</title>
@@ -32,11 +34,12 @@
                 while($row = $result->fetch_assoc()) {
                     if($row["password"]==$mypassword && $row["username"]==$myusername)
                     {
+                        $usertype = $row['usertype'];
                         $_SESSION['user']=$myusername;
                         $_SESSION['password']=$mypassword;
-                        $usertype = $row['usertype'];
+                        $_SESSION['usertype']=$usertype;
                         if($usertype=='citizen')
-                            header("location:user_sidebar.php");
+                            header("location:user_db.php");
                         else if($usertype=='admin')
                             header("location:adminchiru.php");
                         else if($usertype=='authority')

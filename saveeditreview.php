@@ -7,6 +7,6 @@ session_start();
         include('config.php');
         $sql = "UPDATE reviews SET text='$text' WHERE reviewid='$rid'";
         $conn->query($sql);
-        header("location: user_dashboard.php");
+        header("location: user_reviews.php");
     }
     ?>

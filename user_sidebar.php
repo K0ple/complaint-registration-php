@@ -1,58 +1,97 @@
-<html>
+<!DOCTYPE html>
 <?php 
     session_start();
     $user = $_SESSION['user'];
+    include('bar.php');
  ?>
-    <head>
-        <title>USER DASHBOARD</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
-            body{
-                background-image: url("https://wallpapertag.com/wallpaper/full/e/1/0/118962-best-background-gradient-1920x1200-for-tablet.jpg");
-            }
-            .sidebar{
-                height:100%;
-                background-color: black;
-                width: 250px;
-                position: fixed;
-                top: 0;
-                left: 0;
-                overflow: hidden;
-                padding-top: 10px;
-            }
-            .sidebar a{
-                text-decoration: none;
-                font-size:25px;
-                color:white;
-                padding:10px;
-                display:block;
-            }
-            .sidebar a:hover{
-                color: gold;
-            }
-            img{
-                width: 100px;
-                height: 100px;
-                border-radius: 50%;
-                padding-left: 65px;
-            }
-            h2
-            {
-                text-align: center;
-                color: white;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="sidebar">
-            <h2>Hello <?php echo $user;?> !!!</h2>
-            <img src="https://www.paceind.com/wp-content/uploads/2016/09/display-14.png"><br>
-            <a href="user_dash(chiru).php" ><i class="fa fa-home fa-fw"></i>DASHBOARD</a><br>
-            <a href="edituser.php" >EDIT PROFILE</a><br>
-            <a href="admindashboard_complaints.php" >VIEW COMPLAINT</a><br>
-            <a href="admindashboard_reviews.php" >VIEW REVIEWS</a><br>
-            <a href="admin_view_userdetails.php" >USER DETAILS</a><br>
-            <a href="admin_view_auth_details.php" >AUTHORITIES</a><br>
+
+<html>
+<head>
+  <title>USER HOME</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+    background-image: url("https://wallpapertag.com/wallpaper/full/e/1/0/118962-best-background-gradient-1920x1200-for-tablet.jpg");               
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 80px;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 100px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+  transition: 0.5s;
+}
+
+.sidenav a:hover {
+  color: gold;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  margin-top:0px;
+  transition: margin-left .5s;
+  padding: 16px;
+}
+.img1{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  left: calc(50% - 50px);
+}
+h1{
+  font-size: 50px;
+  
+}
+</style>
+</head>
+<body>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <img class="img1" src="https://www.paceind.com/wp-content/uploads/2016/09/display-14.png"><br>
+            <a href="user_db.php" ><i class="fa fa-home fa-fw"></i>DASHBOARD</a><br>
+            <a href="user_pen_complaints.php" >PENDING COMPLAINT</a><br>
+            <a href="user_sol_complaints.php" >SOLVED COMPLAINT</a><br>
+            <a href="user_complaints.php">HISTORY</a><br>
+            <a href="user_reviews.php" >VIEW REVIEWS</a><br>
+            <a href="user_auth_details.php" >AUTHORITIES</a><br>
         </div>
-    </body>
-</html>
+        <div id="main">
+  <span style="font-size:30px;cursor:pointer; font-style: italic;;" onclick="openNav()">&#9776; MENU</span>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "0px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+   
+</body>
+</html> 
