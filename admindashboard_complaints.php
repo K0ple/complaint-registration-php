@@ -114,7 +114,8 @@
                 {
                     while($row = $result->fetch_assoc())
                     {
-                        echo "<tr><td class='cid2'>".$row["complaintid"]."</td><td>".$row['username']."</td><td>".$row['authorityname']."</td><td>".$row['msg']."</td><td>".$row['image']."</td><td class='cid2'>".$row['status']."</td></tr>";
+                        $img = $row["image"];
+                        echo "<tr><td class='cid2'>".$row["complaintid"]."</td><td>".$row['username']."</td><td>".$row['authorityname']."</td><td>".$row['msg']."</td><td>"."<button onclick='img(\"$img\")' ><a href='javascript:void(0)'>View Image</a></button>"."</td><td class='cid2'>".$row['status']."</td></tr>";
                     }
                 }
             ?>
@@ -138,31 +139,21 @@
                 {
                     while($row = $result->fetch_assoc())
                     {
-                        echo "<tr><td class='cid2'>".$row["complaintid"]."</td><td>".$row['username']."</td><td>".$row['authorityname']."</td><td>".$row['msg']."</td><td>".$row['image']."</td><td class='cid2'>".$row['status']."</td></tr>";
+                        $img = $row["image"];
+                        echo "<tr><td class='cid2'>".$row["complaintid"]."</td><td>".$row['username']."</td><td>".$row['authorityname']."</td><td>".$row['msg']."</td><td>"."<button onclick='img(\"$img\")' ><a href='javascript:void(0)'>View Image</a></button>"."</td><td class='cid2'>".$row['status']."</td></tr>";
                     }
                 }
             ?>
+            <div id="form"></div>
+            <script>
+                function img(i)
+                {
+                    document.getElementById('form').innerHTML= '<form "style=display:none;" method="post" target="_blank" action="displayimg.php"><input type="text" id= "imgsrc" name="imgsrc"><input type="submit" id="submit"></form>';
+                    document.getElementById('imgsrc').value = i;
+                    document.getElementById('submit').click(); 
+                }
+            </script>
         </table>
         <br><br>
-        <!-- <h3>Reviews given by users</h3>
-        <table>
-        <tr>
-            <th class="cid">Review Id</th>
-            <th class="ra">User Name</th>
-            <th class="ra">Authority Name</th>
-            <th class="rvw">Review</th>
-        </tr>
-        <?php 
-                $sql = "SELECT reviewid, username, authorityname, text FROM reviews";
-                $result = $conn->query($sql);
-                if($result->num_rows>0)
-                {
-                    while($row = $result->fetch_assoc())
-                    {
-                        echo "<tr><td class='cid'>".$row["reviewid"]."</td><td class='ra'>".$row['username']."</td><td class='ra'>".$row['authorityname']."</td><td class='rvw'>".$row["text"]."</td></tr>";
-                    }
-                }
-            ?>
-        </table> -->
     </body>
 </html>

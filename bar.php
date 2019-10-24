@@ -1,34 +1,34 @@
 <html>
 <?php 
-  echo '<ul><li><a href="main.php">Home</a></li>';
-  echo '<li><a href="about.php">About</a></li>';
+  echo '<ul class="ul1"><li class="li1"><a href="main.php">Home</a></li>';
+  echo '<li class="li1"><a href="about.php">About</a></li>';
   if(isset($_SESSION['user'])==TRUE)
   {
-    echo '<li><a href="viewdetailsuser.php">Profile</a></li>';
-    echo '<li><a href="edituser.php">Edit Profile</a></li>';
-    echo '<li><a href="logout.php">Logout</a></li></ul>';
+    echo '<li class="li1"><a href="viewdetailsuser.php">Profile</a></li>';
+    echo '<li class="li1"><a href="edituser.php">Edit Profile</a></li>';
+    echo '<li class="li1"><a href="logout.php">Logout</a></li></ul>';
   }
   else
   {
-    echo '<li><a href="login.php">Login</a></li>';
-    echo '<li><a href="signup.php">Sign Up</a></li>';
-    echo '<li><a href="complaint.php">Complaint</a></li></ul>';
+    echo '<li class="li1"><a href="login.php">Login</a></li>';
+    echo '<li class="li1"><a href="signup.php">Sign Up</a></li>';
+    echo '<li class="li1"><a href="complaint.php">Complaint</a></li></ul>';
   }
 ?>
 <style>
-ul {
+.ul1 {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color:darkmagenta;
+  background-color:DarkOrchid;
   border: 1px solid ghostwhite;
   border-radius: 40px;
 }
-li {
+.li1 {
   float: left;
 }
-li a {
+.li1 a {
   display: block;
   color: wheat;
   text-align: center;
@@ -40,7 +40,7 @@ li a {
   font-size: 18px;
   transition: 0.2s;
 }
-li a:hover:not(.active) {
+.li1 a:hover:not(.active) {
   background-color: gold;
   color: black;
   transform: scale(1.3);

@@ -36,7 +36,7 @@
                         $_SESSION['password']=$mypassword;
                         $usertype = $row['usertype'];
                         if($usertype=='citizen')
-                            header("location:userchiru.php");
+                            header("location:user_sidebar.php");
                         else if($usertype=='admin')
                             header("location:adminchiru.php");
                         else if($usertype=='authority')
