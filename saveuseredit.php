@@ -1,7 +1,9 @@
 <?php   
-    $firstname = $lastname = $username = $email = $password = $contact = $usertype ="";
+session_start(); 
+    $firstname = $lastname = $email = $password = $contact = $usertype ="";
         $firstnameErr = $lastnameErr = $usernameErr = $emailErr = $passwordErr = $contactErr = "";
         include('config.php');
+        $user_id = $_SESSION['user_id'];
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(empty($_POST["firstname"]))
             {
@@ -33,19 +35,19 @@
                     $lastname = $_POST["lastname"]; 
                 }
             }
-            if(empty($_POST["username"]))
+            if(empty($_POST["location"]))
             {
-                $usernameErr = "User Name cannot be Empty.";
+                $locationErr = "Location cannot be Empty.";
             }
             else
-            { 
-                if(!preg_match("/^[a-zA-Z0-9_ ]+$/", $_POST["username"]))
+            {  
+                if(!preg_match("/^[a-zA-Z ]+$/", $_POST["location"]))
                 {
-                    $usernameErr = "User Name should contain only alphabets, numbers, underscores and spaces.";
+                    $locationErr = "Location should contain only alphabets and spaces.";
                 }
                 else
                 {
-                    $username = $_POST["username"];  
+                    $location = $_POST["location"]; 
                 }
             }
             if(empty($_POST["contact"]))
@@ -96,9 +98,9 @@
             $usertype = $_POST['usertype'];
             
 
-            if($usernameErr ==''&&$emailErr ==''&&$firstnameErr ==''&&$lastnameErr==''&&$passwordErr==''&&$contactErr=='')
+            if($locationErr ==''&&$emailErr ==''&&$firstnameErr ==''&&$lastnameErr==''&&$passwordErr==''&&$contactErr=='')
             {
-                $sql = "UPDATE user_details SET firstname='$firstname', lastname='$lastname', username='$username', contact='$contact', email='$email', password='$password' WHERE username='$username'";
+                $sql = "UPDATE user_details SET firstname='$firstname', lastname='$lastname', location='$location', contact='$contact', email='$email', password='$password' WHERE user_id='$user_id'";
                 if ($conn->query($sql) == TRUE) {
                     echo "Saved successfully";
                 } else {
@@ -109,7 +111,7 @@
             {
                 echo $firstnameErr."<br>";
                 echo $lastnameErr."<br>";
-                echo $usernameErr."<br>";
+                echo $locationErr."<br>";
                 echo $emailErr."<br>";
                 echo $passwordErr."<br>";
                 echo $confirmpasswordErr."<br>";

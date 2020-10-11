@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php 
     session_start();
-    $user = $_SESSION['user'];
+    $user_id = $_SESSION['user_id'];
     include('bar.php');
  ?>
 
@@ -70,12 +70,12 @@ h1{
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <img class="img1" src="https://www.paceind.com/wp-content/uploads/2016/09/display-14.png"><br>
-            <a href="user_db.php" ><i class="fa fa-home fa-fw"></i>DASHBOARD</a><br>
-            <a href="user_pen_complaints.php" >PENDING COMPLAINT</a><br>
-            <a href="user_sol_complaints.php" >SOLVED COMPLAINT</a><br>
-            <a href="user_complaints.php">HISTORY</a><br>
+            <a href="user_main.php" ><i class="fa fa-home fa-fw"></i>DASHBOARD</a><br>
+            <a href="edit_nonuser.php" >EDIT PROFILE</a><br>
+            <a href="user_pen_complaints.php" >PENDING COMPLAINTS</a><br>
+            <a href="user_sol_complaints.php" >SOLVED COMPLAINTS</a><br>
             <a href="user_reviews.php" >VIEW REVIEWS</a><br>
-            <a href="user_auth_details.php" >AUTHORITIES</a><br>
+            <a href="logout.php"> LOG OUT</a><br>
         </div>
         <div id="main">
   <span style="font-size:30px;cursor:pointer; font-style: italic;;" onclick="openNav()">&#9776; MENU</span>

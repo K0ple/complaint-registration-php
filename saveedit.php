@@ -6,8 +6,8 @@ session_start();
         $complaint = $_POST["complaint"];
         $image = $_POST["image"];
         include('config.php');
-        $sql = "UPDATE complaints SET msg='$complaint', image='$image' WHERE complaintid='$cid'";
+        $sql = "UPDATE complaints SET complaint='$complaint', complaint_file='$image' WHERE complaint_id='$cid'";
         $conn->query($sql);
-        header("location: user_complaints.php");
+        header("location: user_pen_complaints.php");
     }
     ?>

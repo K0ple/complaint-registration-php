@@ -83,11 +83,6 @@
                 <input type="submit">
             </form>
         </div>
-        <div class="right">
-            <h2>Message</h2><br>
-            <textarea></textarea><br>
-            <input type="submit" value="Send Message">
-        </div>
     </div>
     </body>
 </html>

@@ -4,7 +4,7 @@
     if($_SERVER['REQUEST_METHOD']=='POST')
     {
         $imgsrc = $_POST['imgsrc'];
-        echo "<img src='$imgsrc'>";
+        // echo "<img src='$imgsrc'>";
     }
 ?>
 </html>

@@ -9,6 +9,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     $reviewid = $_POST["reviewid"];
     $authorityname = $_POST["authorityname"];
     $text = $_POST["text"];
+    $complaint = $_POST["complaint"];
 }
 ?>
 <head>
@@ -91,6 +92,14 @@ input[type=submit]:hover {
     </div>
     <div class="row">
       <div class="col1">
+        <label for="complaint">Complaint</label>
+      </div>
+      <div class="col2">
+        <textarea id="complaint" readonly name="complaint" placeholder="Write something.." style="height:200px"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col1">
         <label for="subject">Subject</label>
       </div>
       <div class="col2">
@@ -104,6 +113,7 @@ input[type=submit]:hover {
 </div>
 <script>
         document.getElementById('text').value = "<?php echo $text; ?>";
+        document.getElementById('complaint').value = "<?= $complaint; ?>";
 </script>
 </body>
 </html>

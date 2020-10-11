@@ -3,9 +3,9 @@
 <?php 
     session_start(); 
     include('bar.php');
-    $user = $_SESSION['user'];
+    $user_id = $_SESSION['user_id'];
     include('config.php');
-    $sql = "SELECT * from user_details where username='$user'";
+    $sql = "SELECT * from user_details where user_id='$user_id'";
     $result = $conn->query($sql);
     if($result->num_rows>0)
         {
@@ -13,10 +13,10 @@
             {
                 $firstname = $row['firstname'];
                 $lastname = $row['lastname'];
-                $username = $row['username'];
                 $usertype = $row['usertype'];
                 $contact = $row['contact'];
                 $email = $row['email'];
+                $location = $row['location'];
                 $password = $row['password'];
                 $confirm = $row['password'];
             }
@@ -35,12 +35,14 @@
         <form method="post" action="saveuseredit.php">
             <div class="main">
                 <div class="left">
+                    <input type="text" value="<?php echo $user_id; ?>" name="user_id"><br>
                     <input type="text" value="<?php echo $firstname; ?>" name="firstname"><br>
                     <input type="text" value="<?php echo $lastname; ?>" name="lastname"><br>
-                    <input type="text" value="<?php echo $username; ?>" name="username"><br>
-                    <input type="text" value="<?php echo $usertype; ?>" name="usertype" readonly><br>
+                    <input type="text" value="<?php echo $location; ?>" name="location"><br>
+                    
                 </div>
                 <div class="right">
+                <input type="text" value="<?php echo $usertype; ?>" name="usertype" readonly><br>
                     <input type="contact" value="<?php echo $contact; ?>" name="contact"><br>
                     <input type="email" value="<?php echo $email; ?>" name="email"><br>
                     <input type="password" value="<?php echo $password; ?>" name="password"><br>

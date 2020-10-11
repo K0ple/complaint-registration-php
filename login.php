@@ -1,22 +1,39 @@
-<?php session_start();
-    include('bar.php');
-?>
+
 <!DOCTYPE html>
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-<link rel="stylesheet" type="text/css" href="logincss1111.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen" />
 </head>
 
 <body>
-    <div class="log"> 
-        <img src="https://www.paceind.com/wp-content/uploads/2016/09/display-14.png">
-       
-        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
-            <input type="text" placeholder="Username" name="username"><br>
-            <input type="password" placeholder="Password" name="password"><br>
-            <input class="sub" type="submit" value="Login">
-        </form>
-        <a href="signup.php">Not a User? Sign Up here</a>
+    <div class="feature-wrapper pt-5 pb-5 mt-5 mt-lg-5">
+        <center><h1> Complaint Registration Portal</h1></center>
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-md-6 m-auto">
+            <div class="card card-body mt-5">
+                <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i> Login</h1>
+    
+                <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-control"
+                            placeholder="Enter Password" />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+                <p class="lead mt-4">
+                    No Account? <a href="signup.php">Register</a>
+                </p>
+            </div>
+        </div>
     </div>
     <?php
         include("config.php");        
@@ -25,30 +42,40 @@
         {
             include("config.php");
 
-            $myusername=$_POST['username'];
+            $email=$_POST['email'];
             $mypassword=$_POST['password'];
-            $sql = "SELECT username,password,usertype FROM user_details WHERE username='$myusername'";
+            $sql = "SELECT user_id, email, password, usertype FROM user_details WHERE email='$email'";
             $result = $conn->query($sql);
             if($result->num_rows>0)
             {
                 while($row = $result->fetch_assoc()) {
-                    if($row["password"]==$mypassword && $row["username"]==$myusername)
+                    if($row["password"]==$mypassword && $row["email"]==$email)
                     {
                         $usertype = $row['usertype'];
-                        $_SESSION['user']=$myusername;
-                        $_SESSION['password']=$mypassword;
+                        $user_id = $row['user_id'];
+                        $_SESSION['user_id']=$user_id;
                         $_SESSION['usertype']=$usertype;
                         if($usertype=='citizen')
-                            header("location:user_db.php");
+                            header("location:user_main.php");
                         else if($usertype=='admin')
-                            header("location:adminchiru.php");
+                            header("location:admin_main.php");
+                        else if($usertype=='local_admin')
+                            header("location:local_admin_main.php");
                         else if($usertype=='authority')
-                            header("location:authoritychiru.php");
+                            header("location:authority_main.php");
                     }
                     else
+                    {
                         echo "INVALID CREDITIANTIALS!!!<br>  TRY AGAIN!!!";
-                        echo "username: ".$row['username'];
+                        echo "Email: ".$row['email'];
+                    }
+                        
                 }
+            }
+            else
+            {
+                echo "INVALID CREDITIANTIALS!!!<br>  TRY AGAIN!!!";
+                echo "Email: ".$_POST['email'];
             }
             $conn->close();
         }

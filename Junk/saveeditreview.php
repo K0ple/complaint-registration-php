@@ -5,7 +5,7 @@ session_start();
         $rid = $_SESSION["rid"];
         $text= $_POST["text"];
         include('config.php');
-        $sql = "UPDATE reviews SET text='$text' WHERE reviewid='$rid'";
+        $sql = "UPDATE reviews SET review='$text' WHERE review_id='$rid'";
         $conn->query($sql);
         header("location: user_reviews.php");
     }

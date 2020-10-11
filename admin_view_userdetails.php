@@ -60,26 +60,30 @@
         </style>
     </head>
     <body>
-        <h3 id='a'>USER DETAILS<h3>
+        <h3 id='a' style='text-align:center'>USER DETAILS<h3>
         <table>
             <tr>
-                <th class="cid">User Name</th>
-                <th class="ra">First Name</th>
-                <th>Last Name</th>
-                <th>Contact No.</th>
+                <th>S.No</th>
+                <th style="width: 100px;">User ID</th>
+                <th class="ra">Name</th>
+                <th>Location</th>
+                <th  style="width: 1500px;">Contact No.</th>
                 <th class="rvm">Email ID</th>
+                <th>Address Proof</th>
             </tr>
         <?php 
             include('config.php');
-            $sql = "SELECT * FROM user_details";
+            $sql = "SELECT * FROM user_details where usertype='citizen'";
             $result = $conn->query($sql);
             if($result->num_rows>0)
             {
+                
+                $i = 1;
                 while($row = $result->fetch_assoc())
                 {
-                    if($row['usertype']=="citizen"){
-                    echo "<tr><td class='cid'>".$row["username"]."</td><td class='ra'>".$row['firstname']."</td><td class='ra'>".$row['lastname']."</td><td class='ra'>".$row['contact']."</td><td class='rvw'>".$row["email"]."</td></tr>";
-                    }
+                    $href = 'view_img.php?img='.$row['address_proof'];
+                    echo "<tr><td>".$i++."</td><td class='cid'>".$row["user_id"]."</td><td class='ra'>".$row['firstname']." ".$row['lastname']."</td><td class='ra'>".$row['location']."</td><td class='ra'>".$row['contact']."</td><td class='rvw'>".$row["email"]."</td><td class='rvw'>"."<a href='$href' target='_blank'>Click Here</a>"."</td></tr>";
+                  
                 }
             }
             ?>

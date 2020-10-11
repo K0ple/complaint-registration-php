@@ -1,7 +1,13 @@
 <html>
 <?php 
     session_start();
-    $user = $_SESSION['user'];
+    include('config.php');
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT concat(firstname, ' ', lastname) as 'name' from user_details where user_id = '$user_id'";
+    $result = $conn->query($sql);
+    if($result->num_rows>0)
+        $row = $result->fetch_assoc();
+    $name = $row['name'];
  ?>
     <head>
         <title>ADMIN DASHBOARD</title>
@@ -45,14 +51,15 @@
     </head>
     <body>
         <div class="sidebar">
-            <h2>Hello <?php echo $user;?> !!!</h2>
+            <h2>Hello <?php echo $name;?></h2>
             <img src="https://www.paceind.com/wp-content/uploads/2016/09/display-14.png"><br>
-            <a href="adminchiru.php" ><i class="fa fa-home fa-fw"></i>DASHBOARD</a><br>
-            <a href="edituser.php" >EDIT PROFILE</a><br>
+            <a href="admin_main.php" ><i class="fa fa-home fa-fw"></i>DASHBOARD</a><br>
+            <a href="edit_nonuser.php" >EDIT PROFILE</a><br>
             <a href="admindashboard_complaints.php" >VIEW COMPLAINT</a><br>
             <a href="admindashboard_reviews.php" >VIEW REVIEWS</a><br>
             <a href="admin_view_userdetails.php" >USER DETAILS</a><br>
             <a href="admin_view_auth_details.php" >AUTHORITIES</a><br>
+            <!-- <a href="admin_view_localadmin_details.php" >LOCAL ADMINS</a><br> -->
             <a href="logout.php"> LOG OUT</a><br>
         </div>
     </body>

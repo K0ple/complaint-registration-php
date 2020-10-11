@@ -2,18 +2,23 @@
     <head>
     <?php 
         include('user_sidebar.php');
-        $user = $_SESSION['user'];
+        $user_id = $_SESSION['user_id'];
         include('config.php');
-        $sql3 = "SELECT COUNT(status) from complaints where status=1 and username='$user'";
+        $sql3 = "SELECT COUNT(status) from complaints where status='solved' and user_id='$user_id'";
         $result3 = $conn->query($sql3);
         if($result3->num_rows>0)
             $row3 = $result3->fetch_assoc();
         $solvedcomplaintscount =  $row3['COUNT(status)'];
-        $sql4 = "SELECT COUNT(status) from complaints where status=0 and username='$user'";
+        $sql4 = "SELECT COUNT(status) from complaints where status!='solved' and user_id='$user_id'";
         $result4 = $conn->query($sql4);
         if($result4->num_rows>0)
             $row4 = $result4->fetch_assoc();
         $unsolvedcomplaintscount =  $row4['COUNT(status)'];
+        $sql5 = "SELECT COUNT(review_id) from complaints cp join reviews rw on cp.complaint_id = rw.complaint_id where user_id='$user_id'";
+        $result5 = $conn->query($sql5);
+        if($result5->num_rows>0)
+            $row5 = $result5->fetch_assoc();
+        $reviewcount =  $row5['COUNT(review_id)'];
 
     ?>
         <title>USER DASHBOARD</title>
@@ -28,6 +33,7 @@
                flex-direction: row;
            }
            .d2{
+               
                 position: absolute;
                 background-color: lightgreen;
                 margin-top: 30px;
@@ -118,69 +124,34 @@
     </head>
     <body>
         <div class="d1">
-            <div class="d2">
-                <h3>Your Recent Activity</h3>
-        <table>
-            <tr>
-                <th class="cid">Complaint ID</th>
-                <th>Authority Name</th>
-                <th>Complaint</th>
-                <th class="cid">Status</th>
-            </tr>
-
-            <?php 
-                $edit = array();
-                $edit2 = array();
-                $edit4 = array();
-                $edit6 = array();
-                $edit8 = array();
-                $i=0;
-                include('config.php');
-                $sql = "SELECT complaintid, authorityname, msg, image, status FROM complaints where username = '$user'";
-                $result = $conn->query($sql);
-                if($result->num_rows>0)
-                {
-                    $count = 0;
-                    while($row = $result->fetch_assoc())
-                    {
-                        if($count<4)
-                        {
-                            $edit[$i] = $row["complaintid"]; 
-                            $edit2[$i] = $row["authorityname"];
-                            $edit4[$i]= $row["msg"];
-                            $edit6[$i] = $row["image"];
-                            $edit8[$i] = $row["status"]; 
-                            echo "<tr><td class='cid'>".$row["complaintid"]."</td><td>".$row['authorityname']."</td><td>".$row['msg']."</td><td class='cid'>".$row['status']."</td></tr>";
-                            $i++;
-                            $count++;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                }
-            ?>
-        </table>
-        <form action="user_dashboard(cont).php" method="POST" >
-                <input type="submit" value="view more &raquo" name="view comp" class="w3-button w3-theme w3-hover-green w3-hover-shadow">
-        </form>
-            </div>
+        
             <div class='main1'>
             <a href='user_sol_complaints.php'>
-                <div class="d3">
+                <div class="d4">
                     <p>Solved Complaints</p>
                     <p><?php echo $solvedcomplaintscount; ?></p>
                 </div>
             </a>
             <a href='user_pen_complaints.php'>
-                <div class="d4">
+                <div class="d3">
                     <p>Pending Complaints</p>
                     <p><?php echo $unsolvedcomplaintscount; ?></p>
                 </div>
             </a>
+            <a href='user_reviews.php'>
+                <div class="d4">
+                    <p>Reviews</p>
+                    <p><?php echo $reviewcount; ?></p>
+                </div>
+            </a>
+            <a href='user_add_complaint.php'>
+                <div class="d3">
+                    <p>Add a new Complaint</p>
+                </div>
+            </a>
             </div>
-        <br><br>
         </div>
+        <br><br>
+       
     </body>
 </html>

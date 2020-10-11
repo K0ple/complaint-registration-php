@@ -60,26 +60,29 @@
         </style>
     </head>
     <body>
-        <h3 id='a'>AUTHORITY DETAILS<h3>
+    <h3 id='a'>AUTHORITY DETAILS<h3>
         <table>
             <tr>
-                <th class="cid">Authority Username</th>
-                <th class="ra">First Name</th>
-                <th>Last Name</th>
-                <th>Contact No.</th>
-                <th class="rvm">Authority EmailID</th>
+                <th style="max-width: 5px;">S.No</th>
+                <th style="width: 100px;">Authority ID</th>
+                <th class="ra" style="min-width:150px;">Name</th>
+                <th class="ra" style="min-width: 100px;">Department</th>
+                <th>Location</th>
+                <th  style="min-width: 120px;">Contact No.</th>
+                <th class="rvm">Email ID</th>
             </tr>
         <?php 
             include('config.php');
-            $sql = "SELECT * FROM user_details";
+            $sql = "SELECT user_details.*, dept_name FROM user_details join authority_details on user_details.user_id = authority_details.authority_id join departments on authority_details.dept_id = departments.dept_id where usertype='Authority'";
             $result = $conn->query($sql);
             if($result->num_rows>0)
             {
+                $i = 1;
                 while($row = $result->fetch_assoc())
                 {
-                    if($row['usertype']=="authority"){
-                    echo "<tr><td class='cid'>".$row["username"]."</td><td class='ra'>".$row['firstname']."</td><td class='ra'>".$row['lastname']."</td><td class='ra'>".$row['contact']."</td><td class='rvw'>".$row["email"]."</td></tr>";
-                    }
+                  
+                    echo "<tr><td>".$i++."</td><td class='cid'>".$row["user_id"]."</td><td class='ra'>".$row['firstname']." ".$row['lastname']."</td><td class='ra'>".$row['dept_name']."</td><td class='ra'>".$row['location']."</td><td class='ra'>".$row['contact']."</td><td class='rvw'>".$row["email"]."</td></tr>";
+                  
                 }
             }
             ?>

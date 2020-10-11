@@ -108,6 +108,9 @@ input[type=submit]:hover {
       </div>
     </div>
      <div class="row">
+     <div class="col1">
+        <label for="image">Status</label>
+      </div>
       <div class="col2">
         <p><?php echo $status;?></p><br>
       </div> 	

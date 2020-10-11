@@ -1,27 +1,43 @@
 <html>
 <?php 
     include("auth_sidebar.php");
-    $user = $_SESSION['user'];
+    // include("bootstrap.php");
+    $user_id = $_SESSION['user_id'];
     include('config.php');
-    $sql2 = "SELECT COUNT(status) from complaints where authorityname='$user' and status=1";
+    $sql2 = "SELECT COUNT(*) from complaints where authority_id='$user_id' and status='solved'";
     $result2 = $conn->query($sql2);
     if($result2->num_rows>0)
         $row2 = $result2->fetch_assoc();
-    $solvedcount =  $row2['COUNT(status)'];
-    $sql3 = "SELECT COUNT(status) from complaints where authorityname='$user' and status=0";
+    $solvedcount =  $row2['COUNT(*)'];
+    $sql3 = "SELECT COUNT(*) from complaints where authority_id='$user_id' and status!='solved'";
     $result3 = $conn->query($sql3);
     if($result3->num_rows>0)
         $row3 = $result3->fetch_assoc();
-    $unsolvedcount =  $row3['COUNT(status)'];
-    $sql4 = "SELECT COUNT(reviewid) from reviews where authorityname='$user'";
+    $unsolvedcount =  $row3['COUNT(*)'];
+    $sql4 = "SELECT COUNT(review_id) from reviews join complaints on complaints.complaint_id = reviews.complaint_id where authority_id='$user_id'";
     $result4 = $conn->query($sql4);
     if($result4->num_rows>0)
         $row4 = $result4->fetch_assoc();
-    $reviewcount =  $row4['COUNT(reviewid)'];
+    $reviewcount =  $row4['COUNT(review_id)'];
+    $sql5 = "SELECT dept_name, location from authority_details ad join departments dp on dp.dept_id = ad.dept_id where authority_id = '$user_id'";
+    $result5 = $conn->query($sql5);
+    if($result5->num_rows>0)
+        $row5 = $result5->fetch_assoc();
     
+    $dept_name = $row5['dept_name'];
+    // $dept_id = $row5['dept_id'];
+    $location = $row5['location'];
+
+    $sql6 = "SELECT count(msg_id) from messages ms join complaints cs on ms.complaint_id = cs.complaint_id where authority_id = '$user_id'";
+    $result6 = $conn->query($sql6);
+    if($result6->num_rows>0)
+        $row6 = $result6->fetch_assoc();
+    
+    $messagecount = $row6['count(msg_id)'];
+
 ?>
     <head>
-        <title>ADMIN DASH</title>
+        <title>Authority Dashboard</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
             body{
@@ -115,16 +131,20 @@
         </style>
     </head>
     <body>
-        <div class="main1">
+        <h2 style="margin-left: 70%;">Location : <?= $location?></h2>
+        <h2 style="margin-left: 70%;">Department: <?= $dept_name?></h2>
+    <h2 style="margin-left:40%;">Authority Dashboard</h2>
+            
+        <div style="margin-top: 10%" class="main1">
             <a href='authdashboard_complaints.php'>
                 <div class="second">
-                    <p>Solved Cases</p>
+                    <p>Solved Complaints</p>
                     <p><?php echo $solvedcount; ?></p>
                  </div>
             </a>
             <a href='authdashboard_complaintspending.php'>
                 <div class="third">
-                    <p>Pending Cases</p>
+                    <p>Pending Complaints</p>
                     <p><?php echo $unsolvedcount; ?></p>
                 </div>
             </a>
@@ -132,6 +152,12 @@
                 <div class="fourth">
                     <p>Review Count</p>
                     <p><?php echo $reviewcount; ?></p>
+                </div>
+            </a>
+            <a href='authdashboard_notifs.php'>
+                <div class="fourth">
+                    <p>Notifications Count</p>
+                    <p><?php echo $messagecount; ?></p>
                 </div>
             </a>
         </div>

@@ -4,7 +4,6 @@
         <title>
             ADD Complaint
         </title>
-        <link rel="import" href="NAVIGATIONBAR.html" >
     </head>
     <body style="background-color:Moccasin">
         <div id="d1">
@@ -17,17 +16,7 @@
             </textarea></br>
             <h2>Upload Image Here:-<input type="file" name="pic"></br></h2>
             <input id=f2 type="submit">
-        </div>
-        <div id="d2">
-            <h1>
-                    Through Message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </h1>
-            <textarea id=t2 rows="10" cols="130">
-
-            </textarea></br> <br> <br>
-            <input id=f1 type="submit">
-        </div>
-        
+        </div>    
     </body>
     <style>
         #d1{
@@ -55,13 +44,14 @@
             height:50px;
             font-size:24;
 	}
-		
         #t1{
             background-color:#e4d1d1;
         }
         #t2{
             background-color:#e4d1d1;
-            
         }
     </style>
+    <?php 
+
+    ?>
 </html>

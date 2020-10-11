@@ -2,26 +2,27 @@
 <?php 
     include("admin_sidebar.php");
     include('config.php');
-    $sql1 = "SELECT COUNT(username) from user_details where usertype='citizen'";
+    $sql1 = "SELECT COUNT(user_id) from user_details where usertype='citizen'";
     $result1 = $conn->query($sql1);
     if($result1->num_rows>0)
         $row1 = $result1->fetch_assoc();
-    $usercount =  $row1['COUNT(username)'];
-    $sql2 = "SELECT COUNT(username) from user_details where usertype='authority'";
+    $usercount =  $row1['COUNT(user_id)'];
+    $sql2 = "SELECT COUNT(user_id) from user_details where usertype='authority'";
     $result2 = $conn->query($sql2);
     if($result2->num_rows>0)
         $row2 = $result2->fetch_assoc();
-    $authoritycount =  $row2['COUNT(username)'];
-    $sql3 = "SELECT COUNT(status) from complaints where status=1";
+    $authoritycount =  $row2['COUNT(user_id)'];
+    $sql3 = "SELECT COUNT(status) from complaints";
     $result3 = $conn->query($sql3);
     if($result3->num_rows>0)
         $row3 = $result3->fetch_assoc();
-    $solvedcomplaintscount =  $row3['COUNT(status)'];
-    $sql4 = "SELECT COUNT(status) from complaints where status=0";
+    $complaintscount =  $row3['COUNT(status)'];
+    $sql4 = "SELECT COUNT(user_id) from user_details where usertype='local_admin'";
     $result4 = $conn->query($sql4);
     if($result4->num_rows>0)
         $row4 = $result4->fetch_assoc();
-    $unsolvedcomplaintscount =  $row4['COUNT(status)'];
+    $localadmincount =  $row4['COUNT(user_id)'];
+    
 ?>
     <head>
         <title>ADMIN DASH</title>
@@ -98,16 +99,16 @@
                     <p><?php echo $authoritycount; ?></p>
                 </div>
             </a>
-            <a href='admindashboard_complaints.php'>
+            <a href='admin_view_localadmin_details.php'>
                 <div class="third">
-                    <p>Solved Complaints</p>
-                    <p><?php echo $solvedcomplaintscount; ?></p>
+                    <p>Number of Local Admins</p>
+                    <p><?php echo $localadmincount; ?></p>
                 </div>
             </a>
             <a href='admindashboard_complaints.php'>
                 <div class="fourth">
-                    <p>Pending Complaints</p>
-                    <p><?php echo $unsolvedcomplaintscount; ?></p>
+                    <p>Number of Complaints</p>
+                    <p><?php echo $complaintscount; ?></p>
                 </div>
             </a>
         </div>

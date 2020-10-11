@@ -1,18 +1,22 @@
 <html>
 <?php 
-if(isset($_SESSION['user'])==TRUE)
+if(isset($_SESSION['user_id'])==TRUE)
 {
     if($_SESSION['usertype']=='citizen')
     {
-      echo '<ul class="ul1"><li class="li1"><a href="user_db.php">Dashboard</a></li>';
+      echo '<ul class="ul1"><li class="li1"><a href="user_main.php">Dashboard</a></li>';
     }
     else if($_SESSION['usertype']=='authority')
     {
-      echo '<ul class="ul1"><li class="li1"><a href="authoritychiru.php">Dashboard</a></li>';
+      echo '<ul class="ul1"><li class="li1"><a href="authority_main.php">Dashboard</a></li>';
     }
     else if($_SESSION['usertype']=='admin')
     {
-      echo '<ul class="ul1"><li class="li1"><a href="adminchiru.php">Dashboard</a></li>';
+      echo '<ul class="ul1"><li class="li1"><a href="admin_main.php">Dashboard</a></li>';
+    }
+    else
+    {
+      echo '<ul class="ul1"><li class="li1"><a href="local_admin_main.php">Dashboard</a></li>';
     }
 }
 else
@@ -20,7 +24,7 @@ else
   echo '<ul class="ul1"><li class="li1"><a href="main.php">Home</a></li>';
 }
   echo '<li class="li1"><a href="about.php">About Us</a></li>';
-  if(isset($_SESSION['user'])==TRUE)
+  if(isset($_SESSION['user_id'])==TRUE)
   {
     echo '<li class="li1"><a href="viewdetailsuser.php">Profile</a></li>';
     echo '<li class="li1"><a href="edituser.php">Edit Profile</a></li>';

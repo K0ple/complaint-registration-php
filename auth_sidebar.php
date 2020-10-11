@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php 
     session_start();
-    $user = $_SESSION['user'];
+    $user_id = $_SESSION['user_id'];
     include('bar.php');
  ?>
 
@@ -71,10 +71,12 @@ h1{
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <img src="https://www.paceind.com/wp-content/uploads/2016/09/display-14.png" class="img1"><br>
-    <a href="authoritychiru.php" ><i class="fa fa-home fa-fw"></i>DASHBOARD</a><br>
+    <a href="authority_main.php" ><i class="fa fa-home fa-fw"></i>DASHBOARD</a><br>
+    <a href="edit_nonuser.php" >EDIT PROFILE</a><br>
     <a href="authdashboard_complaintspending.php" >PENDING COMPLAINTS</a><br>
     <a href="authdashboard_complaints.php" >SOLVED COMPLAINTS</a><br>
     <a href="authdashboard_reviews.php" >VIEW REVIEWS</a><br>
+    <a href="logout.php"> LOG OUT</a><br>
 </div>
 
 <div id="main">
